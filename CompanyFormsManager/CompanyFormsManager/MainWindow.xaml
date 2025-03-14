@@ -1,0 +1,25 @@
+﻿<Window x:Class="CompanyFormsManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyFormsManager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Formularze" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Imię i nazwisko" FontSize="16"/>
+            <TextBox Name="NameInput" materialDesign:HintAssist.Hint="Wpisz imię"/>
+
+            <TextBlock Text="Data urodzenia" FontSize="16" Margin="0,10,0,0"/>
+            <DatePicker Name="BirthDateInput"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Button Content="Zapisz" Width="80" Margin="5"/>
+                <Button Content="Wczytaj" Width="80" Margin="5"/>
+                <Button Content="Eksportuj PDF" Width="120" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
