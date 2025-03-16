@@ -6,20 +6,156 @@
         xmlns:local="clr-namespace:CompanyFormsManager"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Formularze" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="20">
-            <TextBlock Text="Imię i nazwisko" FontSize="16"/>
-            <TextBox Name="NameInput" materialDesign:HintAssist.Hint="Wpisz imię"/>
+        Title="Formularze" Height="600" Width="1000" Background="#f0f0f0">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Numer umowy" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="ContractNumberInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
 
-            <TextBlock Text="Data urodzenia" FontSize="16" Margin="0,10,0,0"/>
-            <DatePicker Name="BirthDateInput"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Data zawarcia umowy" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="DealDateInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <Button Content="Zapisz" Width="80" Margin="5"/>
-                <Button Content="Wczytaj" Width="80" Margin="5"/>
-                <Button Content="Eksportuj PDF" Width="120" Margin="5"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Zleceniodawca" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CustomerNameInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Adres klienta" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CustomerAddressInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="NIP" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CustomerNIPInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Numer telefonu" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CustomerPhoneNumberInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Adres email" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CustomerEmailInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Przedmiot montażu" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="TypeOfInstallationInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Montaż w budynku" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="PlaceOfInstallationInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Cena montażu" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="PriceInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Cena słownie" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="PriceInWordsInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Termin realizacji" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="CompletionDateInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Dodatkowe uwagi" Width="150" VerticalAlignment="Center"/>
+                    <TextBox Name="AdditionalCommentsInput" Width="200" TextChanged="OnInputChanged"/>
+                </StackPanel>
+                <Button Content="Drukuj" Width="200" Height="40" Margin="10"
+        Click="PrintButton_Click"/>
             </StackPanel>
-        </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <FlowDocumentScrollViewer Background="#fff">
+                <FlowDocument FontFamily="Arial" Name="MyDocument">
+                    <Section FontSize="14">
+                        <Paragraph TextAlignment="Center">
+                            <InlineUIContainer>
+                                <Image Source="Resources/duczymin-logo-niebieskie.png" Height="50" Width="200px"/>
+                            </InlineUIContainer>
+                        </Paragraph>
+                        <Paragraph TextAlignment="Center" FontWeight="Bold">
+                            UMOWA MONTAŻU nr
+                            <Run Name="ContractNumberRun" Text="[Numer umowy]"/> / 2025r.
+                        </Paragraph>
+                        <Paragraph>
+                            Zawarta dnia
+                            <Run Name="DealDateRun" FontWeight="Bold" Text="[Data umowy]"/> w Rąbieniu, pomiędzy
+                            <LineBreak/>
+                            Zleceniodawcą:
+                            <Run Name="CustomerNameRun" FontWeight="Bold" Text="[Zleceniodawca]"/>
+                            <LineBreak/>
+                            Zamieszkałym:
+                            <Run Name="CustomerAddressRun" FontWeight="Bold" Text="[Adres klienta]"/>
+                            <LineBreak/>
+                            NIP:
+                            <Run Name="CustomerNIPRun" FontWeight="Bold" Text="[Numer NIP]"/> , tel.:
+                            <Run Name="CustomerPhoneNumberRun" FontWeight="Bold" Text="[Numer telefonu]"/> , email:
+                            <Run Name="CustomerEmailRun" FontWeight="Bold" Text="[Adres-email]"/> , a
+                            <LineBreak/>
+                            Zleceniobiorcą: "DUCZYMIN" Halina Duczymińska, 95-070 Rąbień, ul. Słowiańska 92 na okoliczność montażu
+                            <Run Name="Przedmiot" FontWeight="Bold" Text="[Przedmiot montarzu]"/> w budynku mieszkalnym położonym w miejscowości
+                            <Run Name="MiejsceMontazu" FontWeight="Bold" Text="[Miejsce montażu]"/> przy ul.
+                            <Run Name="AdresMontazu" FontWeight="Bold" Text="[Adres montażu]"/>
+                            <LineBreak/>
+                            W ramach wykonywalnej usługi Zleceniobiorca zobowiązuje się dostarczyć Zleceniodawcy towar według załączonej specyfikacji:
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <TextBox VerticalAlignment="Top" Height="200" Width="500px" Margin="0" Padding="5"
+                                         Background="#f0f0f0" BorderBrush="Gray" BorderThickness="1"
+                                         IsReadOnly="True"
+                                         Text="Treść specyfikacji..." TextChanged="OnInputChanged"/>
+                            </InlineUIContainer>
+                        </Paragraph>
+                        <Paragraph>
+                            Zleceniobiorca zobowiązuje się do wykonania montażu, a Zleceniodawca do zapłaty brutto
+                            <Run Name="Cena" FontWeight="Bold" Text="[Cena montażu]"/> zł (słownie:
+                            <Run Name="CenaSlownie" FontWeight="Bold" Text="[Cena słownie]"/> )
+                        </Paragraph>
+                        <Paragraph>
+                            Na poczet tego zamówienia zostanie wpłacona zaliczka na poniższy rachunek bankowy Wykonawcy: "DUCZYMIN" Halina Duczymińska 65 1160 2202 0000 0000 6917 9743 w wysokości
+                            <Run Name="Zaliczka" FontWeight="Bold" Text="[Zaliczka]"/> zł (słownie:
+                            <Run Name="ZaliczkaSlownie" FontWeight="Bold" Text="[Zaliczka słownie]"/> )
+                        </Paragraph>
+                        <Paragraph>
+                            Termin płatności:
+                            <Run Name="TerminPlatnosci" FontWeight="Bold" Text="[Termin płatności]"/>
+                        </Paragraph>
+                    </Section>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+        </Grid>
     </Grid>
 </Window>
