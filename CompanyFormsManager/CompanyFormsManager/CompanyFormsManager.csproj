@@ -9,10 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\duczymin-logo-niebieskie.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PDFsharp" Version="6.1.1" />
     <PackageReference Include="PDFsharp-MigraDoc-GDI" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\duczymin-logo-niebieskie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
